@@ -1,0 +1,2 @@
+Terminal Quest practice file.
+Search for the word Quest and verify this file after an SCP transfer.

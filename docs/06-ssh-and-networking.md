@@ -1,0 +1,7 @@
+# SSH, SCP, and local networking
+
+**SSH** gives an encrypted connection to a remote shell. The SSH **client** runs in Windows PowerShell; the OpenSSH **server** runs in Ubuntu WSL2. **SCP** uses SSH transport to transfer files. An SSH command runs a program remotely; an SCP command copies data. This project uses `localhost`, so traffic stays on your computer.
+
+There are two different trust questions. The **server host key** helps the client verify which server it contacted. Check its fingerprint through a trusted local Ubuntu session before accepting a first connection. A **user key pair** helps the server authenticate you. Keep the private key on the Windows client; place only the public key in the Ubuntu user’s `~/.ssh/authorized_keys`. Permissions on `.ssh` and `authorized_keys` matter. Never commit keys or passwords and never disable host-key verification to work around a warning.
+
+Ports can conflict. Ubuntu’s SSH server commonly listens on 22, but this exercise may use another local port such as 2222. SSH specifies it with `-p 2222`; SCP uses `-P 2222`. Check the server with `ss -ltn` inside Ubuntu and the Windows path with `Test-NetConnection localhost -Port 2222`. WSL2 generally forwards localhost, but networking modes and firewall rules can affect it. Avoid exposing SSH to the internet. See [SSH tasks](../03-integration/ssh/TODO.md), [SCP tasks](../03-integration/file-transfer/TODO.md), and [Microsoft WSL networking](https://learn.microsoft.com/windows/wsl/networking).

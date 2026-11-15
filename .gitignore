@@ -1,0 +1,13 @@
+.gradle/
+**/build/
+.idea/
+.vscode/
+*.class
+*.log
+*.pid
+*.key
+*.pem
+id_*
+!*.md
+**/.env
+**/practice/

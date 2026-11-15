@@ -1,0 +1,7 @@
+# Processes, environment, logs, and streams
+
+A **process** is a running program. Its **PID** identifies one run; PIDs can be reused later. A network **port** identifies a service endpoint. This app listens on localhost port 8080 by default. In PowerShell, inspect `Get-Process` and `Get-NetTCPConnection -LocalPort 8080`; in Ubuntu, `ps`, `ss -ltn`, and `kill` help diagnose it. Verify the command behind a PID before stopping it.
+
+An **environment variable** is a name/value setting inherited by child processes. PowerShell: `$env:APP_NAME = 'Lab'`; Bash: `export APP_NAME=Lab`. A new unrelated terminal session may not inherit a temporary variable. `PATH` is a list of directories searched for executable programs; inspect it with `$env:PATH` or `echo "$PATH"`. The sample app reads `APP_NAME`, `SERVER_PORT`, and `LOG_LEVEL` at startup.
+
+Programs receive **stdin** and write **stdout** and **stderr**. Redirect them to capture output: in Bash, `java -jar app.jar > app.log 2>&1` sends both streams to one file. PowerShell redirection syntax and encoding differ; check `Get-Help about_Redirection`. A **pipe** feeds one command’s output into another. PowerShell typically sends objects between cmdlets, while Bash pipelines usually send text. An **exit code** is a program’s completion status: zero usually means success. Bash exposes `$?`; PowerShell exposes `$LASTEXITCODE` for native programs. Logs and exit codes help you find failures in scripts and deployment.
